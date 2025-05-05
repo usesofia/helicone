@@ -58,9 +58,9 @@ services:
     image: postgres:17.4 # You can choose a specific version
     container_name: helicone-postgres-flyway-test
     environment:
-      POSTGRES_DB: helicone_test
+      POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: testpassword
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "54388:5432" # Map host port 54388 to container port 5432
     volumes:
