@@ -1,4 +1,9 @@
 export function formatProviderName(provider: string): string {
+  // Handle undefined or null provider
+  if (!provider) {
+    return "Unknown Provider";
+  }
+
   const formattingMap: { [key: string]: string } = {
     OPENAI: "OpenAI",
     ANTHROPIC: "Anthropic",
