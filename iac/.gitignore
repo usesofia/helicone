@@ -1,0 +1,16 @@
+# Ignoring tfvars files in all directories
+**/*.tfvars
+
+# Ignoring tfstate files in all directories
+**/*.tfstate
+
+# Ignoring tfstate.backup files in all directories
+**/*.tfstate.backup
+
+# Ignoring .terraform directory in all directories
+**/.terraform/
+
+# Ignoring *-google-service-account.json
+**/*-google-service-account.json
+
+.DS_Store
