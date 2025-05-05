@@ -85,8 +85,8 @@ services:
       - "9000:9000" # MinIO API port
       - "9001:9001" # MinIO Console port
     environment:
-      MINIO_ROOT_USER: minioadmin
-      MINIO_ROOT_PASSWORD: minioadmin
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     volumes:
       - minio_data:/data
     command: server /data --console-address ":9001"
@@ -104,7 +104,7 @@ services:
         condition: service_healthy
     entrypoint: >
       /bin/sh -c "
-      /usr/bin/mc alias set localminio http://minio:9000 minioadmin minioadmin;
+      /usr/bin/mc alias set localminio http://minio:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
       /usr/bin/mc mb --ignore-existing localminio/request-response-storage;
       exit 0;
       "
@@ -147,9 +147,9 @@ services:
       clickhouse:
         condition: service_healthy
     environment:
-      FLYWAY_URL: jdbc:postgresql://db:5432/helicone_test
+      FLYWAY_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
       FLYWAY_USER: postgres
-      FLYWAY_PASSWORD: testpassword
+      FLYWAY_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - ../supabase:/app/supabase
       - ../clickhouse:/app/clickhouse
